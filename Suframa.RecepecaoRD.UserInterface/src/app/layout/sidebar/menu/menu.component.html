@@ -1,0 +1,87 @@
+<nav class="sidebar" aria-label="Menu lateral" [class.is-brand-hidden]="!showBrand">
+  @if (showBrand) {
+    <div class="brand" aria-label="Marca">
+      <img class="brand__logo" src="assets/img/suframa-logo.svg" alt="SUFRAMA" width="240" height="56" />
+      <div class="brand__text">
+        <div class="brand__title">Superintendência da</div>
+        <div class="brand__subtitle">Zona Franca de Manaus</div>
+      </div>
+    </div>
+  }
+
+  <div class="user" aria-label="Usuário logado">
+    <div class="user__avatar" aria-hidden="true">{{ initials }}</div>
+    <div class="user__info">
+      <div class="user__name">{{ usuario }}</div>
+      <div class="user__subtitle">{{ cpfcnpj }}</div>
+    </div>
+  </div>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <div class="section-label">NAVEGAÇÃO</div>
+
+  <ul class="nav">
+    @for (group of Pss; track group.id) {
+      @for (item of group.funcoesSistema; track item.url) {
+      <li class="nav__item">
+        <a
+          class="nav__link"
+          [routerLink]="item.url"
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="nav__icon" aria-hidden="true">
+            @switch (item.icon) {
+              @case ('plano') {
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path
+                    d="M6 2h9l3 3v17H6V2Zm9 1.5V6h2.5L15 3.5ZM8 9h8v1.5H8V9Zm0 4h8v1.5H8V13Zm0 4h6v1.5H8V17Z"
+                  />
+                </svg>
+              }
+              @case ('convenios') {
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path
+                    d="M7 12a4 4 0 1 1 4-4H9.5A2.5 2.5 0 1 0 7 10.5V12Zm10 0V10.5A2.5 2.5 0 1 0 14.5 8H13a4 4 0 1 1 4 4Zm-8.2 2.2 1.1-1.1 2.1 2.1 4.2-4.2 1.1 1.1-5.3 5.3-3.2-3.2Z"
+                  />
+                </svg>
+              }
+              @case ('relatorio') {
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path
+                    d="M5 3h14v18H5V3Zm2 2v14h10V5H7Zm1 3h8v1.5H8V8Zm0 4h8v1.5H8V12Zm0 4h6v1.5H8V16Z"
+                  />
+                </svg>
+              }
+              @case ('pagamento') {
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path
+                    d="M4 7h16v10H4V7Zm1.5 2.5v5H18.5v-5H5.5ZM7 18.5h10V20H7v-1.5Zm1.25-4.25h3.25v-1.5H9.5v-1.5h2.75a.75.75 0 1 0 0-1.5H9.5V8.25H8v1.1a2.25 2.25 0 0 0 1.5 4.1h2.75v1.5H9v1.5h3.25V18H13.75v-1.1a2.25 2.25 0 0 0-1.5-4.1H9.5Z"
+                  />
+                </svg>
+              }
+              @case ('quitacao') {
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path
+                    d="M7 3h10v2H7V3Zm-2 4h14v14H5V7Zm2 2v10h10V9H7Zm1.2 5.2 1.1-1.1 1.6 1.6 3.9-3.9 1.1 1.1-5 5-2.7-2.7Z"
+                  />
+                </svg>
+              }
+            }
+          </span>
+          <span class="nav__label">{{ item.nome }}</span>
+        </a>
+      </li>
+    }
+    }
+  </ul>
+
+  <div class="sidebar__footer" aria-label="Rodapé do menu">
+    <button class="footer-btn" type="button" aria-label="Ações do menu">
+      <span class="footer-btn__dot" aria-hidden="true"></span>
+      <span class="footer-btn__dot" aria-hidden="true"></span>
+      <span class="footer-btn__dot" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>

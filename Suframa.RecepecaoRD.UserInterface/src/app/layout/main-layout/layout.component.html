@@ -1,0 +1,29 @@
+<div class="shell">
+  <app-cabecalho-governo-federal [enabled]="false"></app-cabecalho-governo-federal>
+
+  <div class="shell__top" aria-label="Topo">
+    <div class="shell__logo" aria-label="Logotipo SUFRAMA">
+      <div class="shell__logo-card">
+        <a class="navbar-brand text-center" href="#" aria-label="SUFRAMA">
+          <figure class="inline m-r-xs">
+            <img class="shell__logo-img" src="assets/img/suframa-logo.svg" alt="SUFRAMA" width="240" height="56" />
+          </figure>
+        </a>
+      </div>
+    </div>
+    <app-cabecalho-suframa></app-cabecalho-suframa>
+  </div>
+
+  <div class="shell__main">
+    <aside class="shell__sidebar" aria-label="Menu">
+      <app-menu [showBrand]="false"></app-menu>
+    </aside>
+
+    <main class="shell__content" aria-label="Conteúdo">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-rodape-menu></app-rodape-menu>
+  <app-rodape-governo-federal></app-rodape-governo-federal>
+</div>

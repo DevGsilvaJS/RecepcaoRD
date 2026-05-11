@@ -1,0 +1,240 @@
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(180deg, #006b38 0%, #004c28 55%, #00331b 100%);
+  box-sizing: border-box;
+}
+
+.login__card {
+  width: min(520px, 100%);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  padding: 22px 22px 20px;
+  box-sizing: border-box;
+}
+
+.login__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 6px 14px;
+}
+
+.login__logo {
+  width: min(360px, 100%);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.login__title {
+  margin: 4px 0 6px;
+  font-size: 20px;
+  font-weight: 750;
+  color: #0b3b2a;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.login__dev {
+  margin: 14px 0 14px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(19, 81, 180, 0.14);
+  background: rgba(19, 81, 180, 0.06);
+  display: grid;
+  gap: 8px;
+}
+
+.login__dev-label {
+  font-size: 12px;
+  font-weight: 750;
+  color: rgba(0, 0, 0, 0.74);
+}
+
+.login__input-largura {
+  width: 100%;
+}
+
+.login__input {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  font-size: 15px;
+  line-height: 1.25;
+  color: #111827;
+  background: #ffffff;
+}
+
+.login__input:focus {
+  outline: 0;
+  border-color: rgba(19, 81, 180, 0.55);
+  box-shadow: 0 0 0 3px rgba(19, 81, 180, 0.18);
+}
+
+.login__dev-ajuda {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.btn-gov {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-gov:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.btn-gov__surface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: #1351b4;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 120ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.btn-gov:hover .btn-gov__surface {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.10);
+  background: #0f459c;
+}
+
+.btn-gov:focus-visible {
+  outline: 0;
+}
+
+.btn-gov:focus-visible .btn-gov__surface {
+  box-shadow: 0 0 0 4px rgba(19, 81, 180, 0.35), 0 14px 30px rgba(0, 0, 0, 0.10);
+}
+
+.btn-gov__text {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1;
+}
+
+.btn-gov__texto {
+  font-weight: 700;
+}
+
+.btn-gov__marca {
+  font-weight: 800;
+  letter-spacing: 0.1px;
+}
+
+.btn-entrar {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-entrar:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.btn-entrar__surface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: #0b3b2a;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 120ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.btn-entrar:hover .btn-entrar__surface {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.10);
+  background: #082e22;
+}
+
+.btn-entrar:focus-visible {
+  outline: 0;
+}
+
+.btn-entrar:focus-visible .btn-entrar__surface {
+  box-shadow: 0 0 0 4px rgba(11, 59, 42, 0.28), 0 14px 30px rgba(0, 0, 0, 0.10);
+}
+
+.btn-entrar__text {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1;
+}
+
+.login__feedback {
+  margin: 12px 2px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.62);
+  text-align: center;
+  min-height: 18px;
+}
+
+.login__spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.10);
+  border-top-color: #1351b4;
+  animation: login-spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: -2px;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gov__surface,
+  .btn-gov:hover .btn-gov__surface {
+    transform: none;
+    transition: none;
+  }
+
+  .btn-entrar__surface,
+  .btn-entrar:hover .btn-entrar__surface {
+    transform: none;
+    transition: none;
+  }
+
+  .login__spinner {
+    animation: none;
+  }
+}

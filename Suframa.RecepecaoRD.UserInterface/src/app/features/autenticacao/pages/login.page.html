@@ -1,0 +1,42 @@
+<main class="login" aria-label="Acesso ao sistema">
+  <section class="login__card" aria-label="Autenticação">
+    <div class="login__brand">
+      <img class="login__logo" src="assets/img/suframa-logo.svg" alt="Logotipo da Suframa" width="240" height="56" />
+    </div>
+
+    <h1 class="login__title">Acesse com sua conta</h1>
+
+    <div class="login__dev">
+      <label class="login__dev-label" for="documento-acesso">CPF ou CNPJ</label>
+      <div class="login__input-largura">
+        <input
+          id="documento-acesso"
+          type="text"
+          class="login__input"
+          autocomplete="username"
+          inputmode="text"
+          [ngModel]="documentoDigitado()"
+          (ngModelChange)="documentoDigitado.set($event)"
+        />
+      </div>
+    </div>
+
+    <button
+      class="btn-entrar"
+      type="button"
+      (click)="entrar()"
+      [disabled]="carregando()"
+      [attr.aria-busy]="carregando()"
+      aria-label="Entrar"
+    >
+      <span class="btn-entrar__surface">
+        <span class="btn-entrar__text">Entrar</span>
+      </span>
+    </button>
+
+    <p class="login__feedback" role="status" aria-live="polite">
+      <span *ngIf="carregando()" class="login__spinner" aria-hidden="true"></span>
+      <span *ngIf="mensagem()">{{ mensagem() }}</span>
+    </p>
+  </section>
+</main>

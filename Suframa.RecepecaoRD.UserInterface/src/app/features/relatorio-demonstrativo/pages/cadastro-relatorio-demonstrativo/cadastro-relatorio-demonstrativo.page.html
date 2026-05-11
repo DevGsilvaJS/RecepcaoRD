@@ -1,0 +1,128 @@
+<div class="page container-fluid py-4">
+  <section class="card shadow-sm w-100">
+    <header class="card-header bg-white py-3">
+      <div class="h5 mb-0">{{ tituloPagina }}</div>
+    </header>
+
+    <div class="card-body p-4">
+      <section class="card mb-3">
+        <div class="card-header bg-white py-2">
+          <div class="small fw-semibold text-secondary">Dados da Empresa</div>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12 col-lg-4">
+              <div class="d-flex flex-wrap gap-1">
+                <span class="text-secondary small">CNPJ:</span>
+                <span class="small">{{ empresaCnpjMascarado }}</span>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+              <div class="d-flex flex-wrap gap-1">
+                <span class="text-secondary small">Razão Social:</span>
+                <span class="small">{{ empresaRazaoSocial }}</span>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+              <div class="d-flex flex-wrap gap-1">
+                <span class="text-secondary small">Endereço:</span>
+                <span class="small">{{ empresaEndereco }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="row g-3">
+          <div class="col-12 col-md-4" id="campo-anoBase">
+            <label class="form-label fw-semibold">Ano Base *</label>
+            <input
+              pInputText
+              class="w-100"
+              [(ngModel)]="formulario.anoBase"
+              placeholder="Ex: 2024"
+              inputmode="numeric"
+              maxlength="4"
+              (input)="formulario.anoBase = ($any($event.target).value || '').replace(/\D/g, '').slice(0, 4)"
+            />
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.anoBase">{{ errosPorCampo.anoBase }}</div>
+          </div>
+
+          <div class="col-12 col-md-4" id="campo-tipoRd">
+            <label class="form-label fw-semibold">Tipo RD *</label>
+            <p-select
+              [options]="opcoesTipoRd"
+              [(ngModel)]="formulario.tipoRd"
+              optionLabel="label"
+              optionValue="value"
+              [disabled]="true"
+              styleClass="w-100"
+            ></p-select>
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.tipoRd">{{ errosPorCampo.tipoRd }}</div>
+          </div>
+
+          <div class="col-12 col-md-4" id="campo-plano">
+            <label class="form-label fw-semibold">Plano *</label>
+            <p-select
+              [options]="opcoesPlano"
+              [(ngModel)]="formulario.plano"
+              optionLabel="label"
+              optionValue="value"
+              [disabled]="carregandoPlanos"
+              styleClass="w-100"
+            ></p-select>
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.plano">{{ errosPorCampo.plano }}</div>
+          </div>
+
+          <div class="col-12" id="campo-representanteLegal">
+            <label class="form-label fw-semibold">Representante Legal de PD&amp;I *</label>
+            <input pInputText class="w-100" [(ngModel)]="formulario.representanteLegal" placeholder="Nome completo" maxlength="155" />
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.representanteLegal">{{ errosPorCampo.representanteLegal }}</div>
+          </div>
+
+          <div class="col-12 col-md-6" id="campo-telefone">
+            <label class="form-label fw-semibold">Telefone *</label>
+            <p-inputMask
+              [(ngModel)]="formulario.telefone"
+              mask="(99) 99999-9999"
+              placeholder="(00) 00000-0000"
+              styleClass="w-100"
+            ></p-inputMask>
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.telefone">{{ errosPorCampo.telefone }}</div>
+          </div>
+
+          <div class="col-12 col-md-6" id="campo-email">
+            <label class="form-label fw-semibold">E-mail *</label>
+            <input pInputText class="w-100" [(ngModel)]="formulario.email" placeholder="email@empresa.com.br" inputmode="email" />
+            <div class="invalid-feedback d-block" *ngIf="errosPorCampo.email">{{ errosPorCampo.email }}</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="card-footer bg-white d-flex justify-content-end gap-2 py-3">
+      <button
+        pButton
+        type="button"
+        label="Cancelar"
+        icon="pi pi-arrow-left"
+        class="p-button-outlined"
+        (click)="cancelar()"
+        [disabled]="salvando"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Salvar"
+        icon="pi pi-save"
+        class="p-button-success"
+        (click)="salvar()"
+        [disabled]="salvando"
+      ></button>
+    </footer>
+  </section>
+</div>
+

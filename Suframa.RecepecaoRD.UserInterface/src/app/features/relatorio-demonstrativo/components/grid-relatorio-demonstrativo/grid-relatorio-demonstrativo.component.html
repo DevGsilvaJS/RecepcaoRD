@@ -1,0 +1,56 @@
+<app-grid
+  [titulo]="titulo"
+  [subtitulo]="subtitulo"
+  [colunas]="colunas"
+  [dados]="dados"
+  [page]="page"
+  [size]="size"
+  [total]="total"
+  [arrayPageSizeOptions]="arrayPageSizeOptions"
+  (onChangePage)="onChangePage.emit($event)"
+  (onChangeSize)="onChangeSize.emit($event)"
+>
+  <ng-template appTemplateGrid="botoes">
+    <div class="d-flex flex-wrap gap-2">
+      <button
+        pButton
+        type="button"
+        label="Novo"
+        icon="pi pi-plus"
+        class="p-button-success"
+        (click)="onNovo.emit()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Exportar"
+        icon="pi pi-download"
+        class="p-button-outlined"
+        (click)="onExportar.emit()"
+      ></button>
+    </div>
+  </ng-template>
+
+  <ng-template appTemplateGrid="filtros" *ngIf="templateFiltros as filtros">
+    <ng-container *ngTemplateOutlet="filtros"></ng-container>
+  </ng-template>
+
+  <ng-template appTemplateGrid="celula" let-linha let-coluna="coluna">
+    <ng-container [ngSwitch]="coluna.campo">
+      <span *ngSwitchCase="'codigoRd'">{{ linha.codigoRd }}</span>
+
+      <p-tag *ngSwitchCase="'tipoRd'" [value]="linha.tipoRd" severity="success"></p-tag>
+
+      <ng-container *ngSwitchCase="'acoes'">
+        <div class="d-flex flex-wrap gap-1 align-items-center">
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="onEditar.emit(linha)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-text p-button-sm p-button-danger" (click)="onExcluir.emit(linha)"></button>
+          <button pButton type="button" icon="pi pi-copy" class="p-button-text p-button-sm" (click)="onCopiar.emit(linha)"></button>
+          <button pButton type="button" icon="pi pi-external-link" class="p-button-text p-button-sm" (click)="onAbrirDetalhes.emit(linha)"></button>
+        </div>
+      </ng-container>
+
+      <span *ngSwitchDefault>-</span>
+    </ng-container>
+  </ng-template>
+</app-grid>

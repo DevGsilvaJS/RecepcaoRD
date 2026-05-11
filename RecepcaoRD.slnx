@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Suframa.RecepcaoRD.API/Suframa.RecepcaoRD.API.csproj" Name="Suframa.RecepcaoRD.API" />
+  <Project Path="Suframa.RecepcaoRD.Application/Suframa.RecepcaoRD.Application.csproj" Name="Suframa.RecepcaoRD.Application" />
+  <Project Path="Suframa.RecepcaoRD.Domain/Suframa.RecepcaoRD.Domain.csproj" Name="Suframa.RecepcaoRD.Domain" />
+  <Project Path="Suframa.RecepcaoRD.Infrastructure/Suframa.RecepcaoRD.Infrastructure.csproj" Name="Suframa.RecepcaoRD.Infrastructure" />
+  <Project Path="Suframa.RecepcaoRD.Tests/Suframa.RecepcaoRD.Tests.csproj" Name="Suframa.RecepcaoRD.Tests" />
+</Solution>

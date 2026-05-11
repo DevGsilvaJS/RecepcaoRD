@@ -1,0 +1,113 @@
+<section class="grid-dados">
+  <header class="grid-dados__cabecalho">
+    <div class="grid-dados__cabecalho-titulos">
+      <div class="grid-dados__titulo">{{ titulo }}</div>
+      <div class="grid-dados__subtitulo" *ngIf="subtitulo as textoSubtitulo">{{ textoSubtitulo }}</div>
+    </div>
+
+    <div class="grid-dados__cabecalho-acoes">
+      <ng-container *ngIf="obterTemplate('botoes') as templateBotoes">
+        <ng-container *ngTemplateOutlet="templateBotoes.templateRef"></ng-container>
+      </ng-container>
+    </div>
+  </header>
+
+  <div class="grid-dados__filtros" *ngIf="obterTemplate('filtros') as templateFiltros">
+    <ng-container *ngTemplateOutlet="templateFiltros.templateRef"></ng-container>
+  </div>
+
+  <p-table
+    class="grid-dados__tabela"
+    [value]="dados"
+    [loading]="carregando"
+    [tableStyle]="{ 'min-width': '100%' }"
+    [rowTrackBy]="rastrearLinha"
+    [sortMode]="'multiple'"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let coluna of colunas; trackBy: rastrearColuna">
+          <th
+            *ngIf="coluna.ordenavel; else thSemOrdenacao"
+            [style.width]="coluna.largura || null"
+            [class.grid-dados__th--direita]="coluna.alinharDireita"
+            [pSortableColumn]="coluna.campo"
+          >
+            <div class="grid-dados__th-conteudo">
+              <span>{{ coluna.cabecalho }}</span>
+              <p-sortIcon [field]="coluna.campo"></p-sortIcon>
+            </div>
+          </th>
+
+          <ng-template #thSemOrdenacao>
+            <th
+              [style.width]="coluna.largura || null"
+              [class.grid-dados__th--direita]="coluna.alinharDireita"
+            >
+              <div class="grid-dados__th-conteudo">
+                <span>{{ coluna.cabecalho }}</span>
+              </div>
+            </th>
+          </ng-template>
+        </ng-container>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-linha>
+      <tr>
+        <td
+          *ngFor="let coluna of colunas; trackBy: rastrearColuna"
+          [class.grid-dados__td--direita]="coluna.alinharDireita"
+        >
+          <ng-container *ngIf="obterTemplate('celula') as templateCelula; else celulaPadrao">
+            <ng-container
+              *ngTemplateOutlet="templateCelula.templateRef; context: { $implicit: linha, coluna: coluna }"
+            ></ng-container>
+          </ng-container>
+
+          <ng-template #celulaPadrao>
+            <ng-container *ngIf="coluna.campo === 'acoes' && obterTemplate('acoesLinha') as templateAcoes; else valorPadrao">
+              <ng-container *ngTemplateOutlet="templateAcoes.templateRef; context: { $implicit: linha }"></ng-container>
+            </ng-container>
+            <ng-template #valorPadrao>{{ obterValor(linha, coluna.campo) }}</ng-template>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="colunas.length || 1" class="grid-dados__vazio">Nenhum registro encontrado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <footer class="grid-dados__rodape">
+    <div class="grid-dados__rodape-esquerda">
+      <span class="grid-dados__rotulo">Resultados por página:</span>
+      <p-select
+        [options]="obterOpcoesRegistrosPorPagina(arrayPageSizeOptions)"
+        [ngModel]="size"
+        (ngModelChange)="aoMudarTamanhoPagina($event)"
+        optionLabel="label"
+        optionValue="value"
+        [style]="{ width: '90px' }"
+        [showClear]="false"
+      ></p-select>
+    </div>
+
+    <div class="grid-dados__rodape-direita">
+      <span class="grid-dados__rotulo">{{ obterTextoIntervalo() }}</span>
+      <p-paginator
+        [rows]="size"
+        [totalRecords]="total"
+        [first]="obterPrimeiraLinha()"
+        [rowsPerPageOptions]="arrayPageSizeOptions"
+        [showFirstLastIcon]="true"
+        [showCurrentPageReport]="true"
+        [currentPageReportTemplate]="obterTextoPaginaAtual()"
+        (onPageChange)="aoMudarPagina($event)"
+      ></p-paginator>
+    </div>
+  </footer>
+</section>
