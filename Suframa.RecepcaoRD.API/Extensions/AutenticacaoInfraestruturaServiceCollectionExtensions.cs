@@ -12,6 +12,7 @@ public static class AutenticacaoInfraestruturaServiceCollectionExtensions
   {
     services.AddSingleton<IArmazenamentoRefreshToken, ArmazenamentoRefreshTokenEmMemoria>();
     services.AddSingleton<IJwtLeitorExpiracao, JwtLeitorExpiracao>();
+    services.AddSingleton<IJwtLeitorReivindicacoes, JwtLeitorReivindicacoes>();
     return services;
   }
 }

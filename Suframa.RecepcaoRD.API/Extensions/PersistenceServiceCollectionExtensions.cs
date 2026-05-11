@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Suframa.RecepcaoRD.Application.Abstractions.AuditoriaRdRecepcao;
 using Suframa.RecepcaoRD.Application.Abstractions.Cadsuf;
 using Suframa.RecepcaoRD.Application.Abstractions.Persistence;
 using Suframa.RecepcaoRD.Application.Abstractions.Security;
+using Suframa.RecepcaoRD.Infrastructure.Auditoria;
 using Suframa.RecepcaoRD.Infrastructure.Persistence;
 using Suframa.RecepcaoRD.Infrastructure.Persistence.Repositories;
 using Suframa.RecepcaoRD.Infrastructure.Security.Jwt;
@@ -37,6 +39,7 @@ public static class PersistenceServiceCollectionExtensions
       o.TokenSecret = configuration["TokenSecret"] ?? string.Empty;
     });
     services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+    services.AddScoped<IContextoUsuarioAuditoriaRdRecepcao, ContextoUsuarioAuditoriaRdRecepcaoHttp>();
     return services;
   }
 }

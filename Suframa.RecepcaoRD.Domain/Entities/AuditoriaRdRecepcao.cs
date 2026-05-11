@@ -6,6 +6,31 @@ public sealed class AuditoriaRdRecepcao
   {
   }
 
+  public static AuditoriaRdRecepcao Registrar(
+    long idReferenciaRegistroAuditado,
+    string cpfCnpjUsuarioSomenteDigitos,
+    string nomeUsuario,
+    string cnpjEmpresaRepresentadaSomenteDigitos,
+    string nomeEmpresaRepresentada,
+    string tipoAcao,
+    DateTime dataHoraAcaoUtc,
+    string descricaoAcao,
+    int funcionalidadeId)
+  {
+    return new AuditoriaRdRecepcao
+    {
+      IdReferenciaRegistroAuditado = idReferenciaRegistroAuditado,
+      CpfCnpjUsuario = cpfCnpjUsuarioSomenteDigitos,
+      NomeUsuario = nomeUsuario,
+      CnpjEmpresaRepresentada = cnpjEmpresaRepresentadaSomenteDigitos,
+      NomeEmpresaRepresentada = nomeEmpresaRepresentada,
+      TipoAcao = tipoAcao,
+      DataHoraAcao = dataHoraAcaoUtc,
+      DescricaoAcao = descricaoAcao,
+      FuncionalidadeId = funcionalidadeId,
+    };
+  }
+
   public long Id { get; private set; }
 
   public long IdReferenciaRegistroAuditado { get; private set; }

@@ -36,7 +36,8 @@ public sealed class AuthenticationTokenService : IAuthenticationTokenService
       string token = _jwtTokenGenerator.GenerateToken(
         document: normalized,
         cnpj: company.Cnpj,
-        companyName: company.CompanyName);
+        companyName: company.CompanyName,
+        nomeUsuario: company.CompanyName);
 
       return new GenerateTokenOk(token, company);
     }
@@ -51,7 +52,8 @@ public sealed class AuthenticationTokenService : IAuthenticationTokenService
       document: normalized,
       cnpj: empresaPorCpf.Cnpj,
       cpf: normalized,
-      companyName: empresaPorCpf.CompanyName);
+      companyName: empresaPorCpf.CompanyName,
+      nomeUsuario: empresaPorCpf.CompanyName);
 
     return new GenerateTokenOk(cpfToken, empresaPorCpf);
   }

@@ -16,7 +16,12 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
     _options = options.Value;
   }
 
-  public string GenerateToken(string document, string? cnpj = null, string? cpf = null, string? companyName = null)
+  public string GenerateToken(
+    string document,
+    string? cnpj = null,
+    string? cpf = null,
+    string? companyName = null,
+    string? nomeUsuario = null)
   {
     byte[] secretBytes = Convert.FromBase64String(_options.TokenSecret);
     var signingKey = new SymmetricSecurityKey(secretBytes);
@@ -42,6 +47,15 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
     if (!string.IsNullOrWhiteSpace(companyName))
     {
       claims.Add(new Claim("companyName", companyName));
+    }
+
+    string nomeParaReivindicacao = !string.IsNullOrWhiteSpace(nomeUsuario)
+      ? nomeUsuario.Trim()
+      : (companyName ?? string.Empty).Trim();
+
+    if (nomeParaReivindicacao.Length > 0)
+    {
+      claims.Add(new Claim("nomeUsuario", nomeParaReivindicacao));
     }
 
     DateTime nowUtc = DateTime.UtcNow;
